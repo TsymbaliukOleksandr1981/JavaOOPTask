@@ -2,7 +2,7 @@ package com.gmail.tsa;
 
 public class Main {
 	public static void main(String[] args) {
-		Group gr = new Group();
+		Group gr = new Group("qwe");
 		try {
 			gr.addStudent(new Student("Alex", "AA", 12, true, 123, "qwe"));
 			gr.addStudent(new Student("Alex", "AB", 12, true, 123, "qwe"));

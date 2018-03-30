@@ -25,21 +25,28 @@ public class Board {
 		}
 	}
 
+	public double getTotalShapeArea() {
+		double area = 0;
+		for (Shape shape : board) {
+			if (shape != null) {
+				area += shape.getArea();
+			}
+		}
+		return area;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		double totalArea = 0;
 		for (int i = 0; i < board.length; i++) {
 			if (board[i] != null) {
 				sb.append(((i + 1) + ") " + board[i]));
-				totalArea += board[i].getArea();
 			} else {
 				sb.append((i + 1) + ") " + "Empy");
-
 			}
 			sb.append(System.lineSeparator());
 		}
-		sb.append("Total Area = " + totalArea);
+		sb.append("Total Area = " + getTotalShapeArea());
 		return sb.toString();
 	}
 

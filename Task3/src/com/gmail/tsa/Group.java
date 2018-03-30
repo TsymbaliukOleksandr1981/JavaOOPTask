@@ -3,9 +3,24 @@ package com.gmail.tsa;
 public class Group {
 
 	private Student[] studentArray = new Student[10];
+	private String groupName;
 
 	public Group() {
 		super();
+		this.groupName = "unknow";
+	}
+
+	public Group(String groupName) {
+		super();
+		this.groupName = groupName;
+	}
+
+	public String getGroupName() {
+		return groupName;
+	}
+
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
 
 	public void addStudent(Student student) throws MyException {
@@ -30,14 +45,14 @@ public class Group {
 		return null;
 	}
 
-	public void deleteStudent(long number) {
+	public boolean deleteStudent(long number) {
 		for (int i = 0; i < studentArray.length; i++) {
 			if (studentArray[i] != null && studentArray[i].getZach() == number) {
 				studentArray[i] = null;
-				return;
+				return true;
 			}
 		}
-		System.out.println("Sorry wrong number");
+		return false;
 
 	}
 
@@ -70,6 +85,7 @@ public class Group {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
+		sb.append("Group: " + this.groupName).append(System.lineSeparator());
 		int i = 0;
 		sort();
 		for (Student student : studentArray) {

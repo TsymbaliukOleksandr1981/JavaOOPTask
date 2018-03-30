@@ -1,0 +1,6 @@
+Alex,AA,12,true,1234,PN-121
+Alex,AAA,34,true,1243,PN-121
+Alex,AAZ,2,true,12123,PN-121
+Alex,AB,15,true,1253,PN-121
+Alex,BA,23,true,12213,PN-121
+Alex,BB,13,true,14523,PN-121
