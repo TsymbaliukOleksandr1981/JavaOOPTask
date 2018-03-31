@@ -5,14 +5,16 @@ import java.io.FileFilter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class FileOperation {
-	
+
 	public static void copyFile(File from, File to) throws IOException {
 		if (from == null || to == null) {
 			throw new IllegalArgumentException("null file pointer");
 		}
-		try (FileInputStream fis = new FileInputStream(from); FileOutputStream fos = new FileOutputStream(to)) {
+		try (InputStream fis = new FileInputStream(from); OutputStream fos = new FileOutputStream(to)) {
 			byte[] buffer = new byte[1024 * 1024];
 			int readByte = 0;
 			for (; (readByte = fis.read(buffer)) > 0;) {
