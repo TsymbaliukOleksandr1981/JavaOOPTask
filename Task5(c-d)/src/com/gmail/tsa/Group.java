@@ -30,6 +30,7 @@ public class Group implements Voencom {
 		}
 		for (int i = 0; i < studentArray.length; i++) {
 			if (studentArray[i] == null) {
+				student.setGroup(this.groupName);
 				studentArray[i] = student;
 				return;
 			}
@@ -95,7 +96,7 @@ public class Group implements Voencom {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Group: " + this.groupName).append(System.lineSeparator());
 		int i = 0;
-		 sort();
+		sort();
 		for (Student student : studentArray) {
 			if (student != null) {
 				sb.append((++i) + ") ").append(student);

@@ -1,10 +1,11 @@
 package com.gmail.tsa;
 
+import java.io.Serializable;
 import java.util.Arrays;
 
-import javax.swing.JOptionPane;
+public class Group implements Voencom, Serializable {
 
-public class Group implements Voencom {
+	private static final long serialVersionUID = 1L;
 	private Student[] studentArray = new Student[10];
 	private String groupName;
 
@@ -26,29 +27,12 @@ public class Group implements Voencom {
 		this.groupName = groupName;
 	}
 
-	public void addStudentInteractive() throws MyException {
-		try {
-			String name = getName("Input student name");
-			String lastName = getName("Input student lastname");
-			int age = getAge();
-			boolean sex = getSex("Input sex -> man or women");
-			long zach = getZach("Input zach number");
-			String group = this.groupName;
-			Student st = new Student(name, lastName, age, sex, zach, group);
-			this.addStudent(st);
-		} catch (NullPointerException e) {
-			System.out.println("Canceled");
-			return;
-		}
-	}
-
 	public void addStudent(Student student) throws MyException {
 		if (student == null) {
 			throw new IllegalArgumentException("Null student");
 		}
 		for (int i = 0; i < studentArray.length; i++) {
 			if (studentArray[i] == null) {
-				student.setGroup(this.groupName);
 				studentArray[i] = student;
 				return;
 			}
@@ -99,68 +83,14 @@ public class Group implements Voencom {
 
 	}
 
-	private int getAge() throws NullPointerException {
-		boolean done = false;
-		int age = 0;
-		for (; !done;) {
-			try {
-				age = Integer.valueOf(JOptionPane.showInputDialog("Input student age"));
-				done = true;
-			} catch (NumberFormatException e) {
-				JOptionPane.showInternalMessageDialog(null, "Invalid ");
-			}
-		}
-		return age;
-	}
-
-	private String getName(String message) throws NullPointerException {
-		boolean done = false;
-		String name = "";
-		for (; !done;) {
-			try {
-				name = JOptionPane.showInputDialog(message);
-				done = true;
-			} catch (NumberFormatException e) {
-				JOptionPane.showInternalMessageDialog(null, "Invalid format");
-			}
-		}
-		return name;
-	}
-
-	private boolean getSex(String message) throws NullPointerException {
-		boolean done = false;
-		boolean name = false;
-		for (; !done;) {
-			try {
-				name = JOptionPane.showInputDialog(message).equals("man");
-				done = true;
-			} catch (NumberFormatException e) {
-				JOptionPane.showInternalMessageDialog(null, "Invalid format");
-			}
-		}
-		return name;
-	}
-
-	private long getZach(String message) throws NullPointerException {
-		boolean done = false;
-		long name = 0;
-		for (; !done;) {
-			try {
-				name = Long.valueOf(JOptionPane.showInputDialog(message));
-				done = true;
-			} catch (NumberFormatException e) {
-				JOptionPane.showInternalMessageDialog(null, "Invalid format");
-			}
-		}
-		return name;
-	}
-
 	public void sortByParametr(int i) {
 		Arrays.sort(this.studentArray, new StudentComparator(i));
 	}
 
-	public void sortByParametr(int i, boolean forward) {
-		Arrays.sort(this.studentArray, new StudentComparator(i, forward));
+	public Student[] getStudentArray() {
+		Student[] temp = new Student[this.studentArray.length];
+		System.arraycopy(studentArray, 0, temp, 0, temp.length);
+		return temp;
 	}
 
 	@Override
@@ -168,7 +98,7 @@ public class Group implements Voencom {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Group: " + this.groupName).append(System.lineSeparator());
 		int i = 0;
-		// sort();
+		sort();
 		for (Student student : studentArray) {
 			if (student != null) {
 				sb.append((++i) + ") ").append(student);

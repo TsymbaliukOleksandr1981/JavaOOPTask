@@ -1,5 +1,7 @@
 package com.gmail.tsa;
 
+import java.io.File;
+
 public class Main {
 	public static void main(String[] args) {
 		Group gr = new Group("PN-121");
@@ -15,10 +17,15 @@ public class Main {
 		}
 		System.out.println(gr);
 
+		File folder = new File("GROPS");
+		folder.mkdirs();
+
+		GroupDAO groupDAO = new GroupDAOSerializableImplementation(folder);
+		GroupController controller = new GroupController(groupDAO);
+		controller.saveGroup(gr);
 		System.out.println();
+		Group groupTwo = controller.loadGroupByName("PN-121");
+		System.out.println(groupTwo);
 
-		Student st = gr.search("Rez");
-
-		System.out.println(st);
 	}
 }

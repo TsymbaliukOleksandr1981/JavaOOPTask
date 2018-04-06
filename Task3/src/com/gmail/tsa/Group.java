@@ -29,6 +29,7 @@ public class Group {
 		}
 		for (int i = 0; i < studentArray.length; i++) {
 			if (studentArray[i] == null) {
+				student.setGroup(this.groupName);
 				studentArray[i] = student;
 				return;
 			}
