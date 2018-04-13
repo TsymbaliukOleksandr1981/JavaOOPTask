@@ -1,0 +1,6 @@
+Olga,Cher,17,false,1243,PN-121
+Irina,Iv,23,false,12213,PN-121
+Andrey,Pop,18,true,12123,PN-121
+Ekaterina,Rez,18,false,1253,PN-121
+Alexey,St,20,true,14523,PN-121
+Alexander,Ts,19,true,1234,PN-121

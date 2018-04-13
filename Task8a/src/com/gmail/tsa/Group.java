@@ -49,12 +49,15 @@ public class Group implements Voencom, Serializable {
 		return null;
 	}
 
-	public void deleteStudent(int n) {
-		if (!(n >= 0 && n < studentArray.length)) {
-			System.out.println("Error index");
-			return;
+	public boolean deleteStudent(long number) {
+		for (int i = 0; i < studentArray.length; i++) {
+			if (studentArray[i] != null && studentArray[i].getZach() == number) {
+				studentArray[i] = null;
+				return true;
+			}
 		}
-		studentArray[n] = null;
+		return false;
+
 	}
 
 	private void sort() {
@@ -87,6 +90,10 @@ public class Group implements Voencom, Serializable {
 		Arrays.sort(this.studentArray, new StudentComparator(i));
 	}
 
+	public void sortByParametr(int i, boolean forward) {
+		Arrays.sort(this.studentArray, new StudentComparator(i, forward));
+	}
+
 	public Student[] getStudentArray() {
 		Student[] temp = new Student[this.studentArray.length];
 		System.arraycopy(studentArray, 0, temp, 0, temp.length);
@@ -116,14 +123,14 @@ public class Group implements Voencom, Serializable {
 				n += 1;
 			}
 		}
-		Student[] studentArray = new Student[n];
+		Student[] recruterArray = new Student[n];
 		int i = 0;
-		for (Student student : studentArray) {
+		for (Student student : this.studentArray) {
 			if (student != null && student.isSex() && student.getAge() >= 18) {
-				studentArray[i++] = student;
+				recruterArray[i++] = student;
 			}
 		}
-		return studentArray;
+		return recruterArray;
 	}
 
 }
